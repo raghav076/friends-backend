@@ -23,7 +23,17 @@ exports.addBenificiery = (req, res) => {
 };
 
 exports.getBenificieries = (req, res) => {
-  User.find({type: 'beneficiery'}).then((data, err) => {
+
+  let { state, district,bloodG } = req.query;
+  if (!state||state==='null')
+  state = /^/;
+  if (!district||district==='null')
+  district = /^/;
+  if (!bloodG||bloodG==='null')
+  bloodG = /^/;
+
+  console.log(req.query);
+  User.find({state : state, district :district, bloodGroup : bloodG,type: 'beneficiery'}).then((data, err) => {
     if (err)
       return res.status(400).json({ err: err });
     if (data)

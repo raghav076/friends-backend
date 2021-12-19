@@ -26,11 +26,20 @@ exports.addDonor = (req, res) => {
 };
 
 exports.getDonors = (req, res) => {
-    User.find({ type: 'donor' }).then((data, err) => {
-        if (err)
-            return res.status(400).json({ err: err });
-        if (data)
-            return res.status(200).json({ data: data });
-    })
+    let { state, district, bloodG } = req.query;
+    if (!state || state === "null") state = /^/;
+    if (!district || district === "null") district = /^/;
+    if (!bloodG || bloodG === "null") bloodG = /^/;
+
+    console.log(req.query);
+    User.find({
+      state: state,
+      district: district,
+      bloodGroup: bloodG,
+      type: "donor",
+    }).then((data, err) => {
+      if (err) return res.status(400).json({ err: err });
+      if (data) return res.status(200).json({ data: data });
+    });
 };
 
