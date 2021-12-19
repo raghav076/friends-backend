@@ -26,7 +26,7 @@ exports.addDonor = (req, res) => {
 };
 
 exports.getDonors = (req, res) => {
-    User.find({ type: 'donoe' }).then((data, err) => {
+    User.find({ type: 'donor' }).then((data, err) => {
         if (err)
             return res.status(400).json({ err: err });
         if (data)
