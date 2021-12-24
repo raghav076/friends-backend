@@ -32,7 +32,7 @@ exports.getBenificieries = (req, res) => {
   if (!bloodG||bloodG==='null')
   bloodG = /^/;
 
-  console.log(req.query);
+  // console.log(req.query);
   User.find({state : state, district :district, bloodGroup : bloodG,type: 'beneficiery'}).then((data, err) => {
     if (err)
       return res.status(400).json({ err: err });

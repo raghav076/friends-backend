@@ -31,7 +31,7 @@ exports.getDonors = (req, res) => {
     if (!district || district === "null") district = /^/;
     if (!bloodG || bloodG === "null") bloodG = /^/;
 
-    console.log(req.query);
+    // console.log(req.query);
     User.find({
       state: state,
       district: district,
